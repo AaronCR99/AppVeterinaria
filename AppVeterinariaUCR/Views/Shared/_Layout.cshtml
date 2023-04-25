@@ -1,0 +1,138 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Veterinaria UCR</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+
+
+<body>
+
+    <header>
+        @*menu de opciones*@ 
+
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+
+                @*opcion principal*@
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Veterinaria Pacífico</a>
+                
+                @*boton del menú*@
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+               
+                @*opciones del menú*@
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <ul class="navbar-nav flex-grow-1">
+                        @*items del  menú de opciones*@
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+
+                        @*if para habilitar opciones del menu solo si cuenta con una cuenta*@
+
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            @*item Mascota*@
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Mascotas" asp-action="Index">Mascotas</a>
+                            </li>
+                            @*item productos*@
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Productos" asp-action="Index">Productos</a>
+                            </li>
+
+                        }
+
+
+
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Galery" asp-action="Index">Galery</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                        @*Submenu de opciones*@
+                        <li class="nav-item dropdown">
+                            @*item raiz*@
+                            <a class=" nav-link dropdown-toggle text-dark" data-toggle="dropdown" href="#"
+                               aria-haspopup="true" aria-expanded="false">Consultas</a>
+
+                            @*Creamos los items*@
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item nav-link text-dark" asp-area="" asp-action="GaleryProductos" asp-controller="Productos">Detalle de productos</a>
+                                <a class="dropdown-item nav-link text-dark">Detalle Mascotas</a>
+                                <a class="dropdown-item nav-link text-dark">Detalle Tratamiento</a>
+                            </div>
+
+                        </li>
+
+                        @*Submenu de opciones para login*@
+                    <li class="nav-item dropdown">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            @*item raiz*@
+                            <a class=" nav-link dropdown-toggle text-dark" data-toggle="dropdown" href="#"
+                               aria-haspopup="true" aria-expanded="false">Hola @User.Identity.Name</a>
+
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item nav-link text-dark" asp-area="" asp-action="Logout" asp-controller="Login">Cerrar sesion</a>
+                                <a class="dropdown-item nav-link text-dark" asp-controller="Login" asp-action="">Cambiar contraseña</a>
+                            </div>
+
+
+
+                        }
+                        else
+                        {
+                            @*item raiz*@
+                            <a class=" nav-link dropdown-toggle text-dark" data-toggle="dropdown" href="#"
+                               aria-haspopup="true" aria-expanded="false">Perfil de usuario</a>
+                            @*Creamos los items*@
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item nav-link text-dark" asp-area="" asp-action="Index" asp-controller="Login">Iniciar sesion</a>
+                                <a class="dropdown-item nav-link text-dark" asp-controller="Login" asp-action="CrearCuenta">Registrarse</a>
+                            </div>
+                        }
+
+
+
+
+                    </li>
+
+                    </ul>
+                </div>
+
+            </div>
+        </nav>
+
+    </header>
+
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2021 - AppVeterinariaUCR - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,50 @@
+﻿@model AppVeterinariaUCR.Models.Productos
+@{
+    ViewData["Title"] = "Crear";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Crear Producto</h1>
+<div class="row">
+    <div class="col-md-4">
+        @*aquí se construye el  formulario*@
+		<form asp-action="Crear" enctype="multipart/form-data" method="post">
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+			@*solicitud del ID*@
+			<div class="form-group">
+				<label asp-for="Id" class="control-label">Identificación</label>
+				<input asp-for="Id" class="form-control" />
+				<span asp-validation-for="Id" class="text-danger"></span>
+			</div>
+			@*solicitud descripcion*@
+			<div class="form-group">
+				<label asp-for="Descrip" class="control-label">Descripción</label>
+				<input asp-for="Descrip" class="form-control" />
+				<span asp-validation-for="Descrip" class="text-danger"></span>
+			</div>
+			@*solicitud del precio compra*@
+			<div class="form-group">
+				<label asp-for="PrecioCompra" class="control-label">Precio Compra</label>
+				<input asp-for="PrecioCompra" class="form-control" />
+				<span asp-validation-for="PrecioCompra" class="text-danger"></span>
+			</div>
+			@*solicitud del  impuesto*@
+			<div class="form-group">
+				<label asp-for="PorImp" class="control-label">Impuesto  I.V.A</label>
+				<input asp-for="PorImp" class="form-control" />
+				<span asp-validation-for="PorImp" class="text-danger"></span>
+			</div>
+			@*solicitud de foto*@
+			<div class="form-group">
+				<label asp-for="Foto" class="control-label"></label>
+				<input asp-for="Foto" class="form-control" name="files" type="file" />
+				<span asp-validation-for="Foto" class="text-danger"></span>
+			</div>
+
+			@*boton para incluir*@
+			<div class="form-group">
+				<input type="submit" value="Incluir" class="btn btn-primary" />
+			</div>
+		</form>
+    </div>
+</div>

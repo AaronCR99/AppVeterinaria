@@ -1,0 +1,98 @@
+﻿@*muy importante, aquí le decimos  a nuestra vista que recibe una lista de productos
+    de parte del  controller*@
+@model IEnumerable<AppVeterinariaUCR.Models.Productos>
+
+
+@{
+    ViewData["Title"] = "Lista productos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Productos</h1>
+<p>
+    <a class="btn btn-primary" asp-action="Crear">Nuevo</a>
+</p>
+<table class="table table-bordered table-responsive-sm">
+    <thead>
+        <tr>
+            @*fila con los  encabezados de  columnas*@
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descrip)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PrecioCompra)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PorImp)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaRegistro)
+            </th>
+            @*Programacion del 10/05/2021*@
+            @*Columna para detalles*@
+            <th></th>
+            @*Columna para modificar*@
+            <th></th>
+            @*Columna para eliminar*@
+            <th></th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)@*aquí se lee toda la lista de objects*@
+        {
+            <tr>
+                @*por cada object  se pinta una rows*@
+                <td> @Html.DisplayFor(model => item.Id) </td>
+                <td>@Html.DisplayFor(model => item.Descrip)</td>
+                <td>@Html.DisplayFor(model => item.PrecioCompra)</td>
+                <td>@Html.DisplayFor(model => item.PorImp)</td>
+                <td>@Html.DisplayFor(model => item.FechaRegistro)</td>
+                @*Programacion del 10/05/2021*@
+                <td><a class="btn btn-primary" data-toggle="modal" data-target="#P-@item.Id">Detalle</a></td>
+
+                <td><a class="btn btn-primary" asp-action="Modificar" asp-route-id="@item.Id">Modificar</a></td>
+
+                <td><a class="btn btn-primary" asp-action="Eliminar" asp-route-id="@item.Id">Eliminar</a></td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+@*Programacion del 10/05/2021*@
+@foreach (var item in Model)
+ {
+    //Modal para cada producto
+    <div id="P-@item.Id" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    @*Titulo del modal*@
+                    <h5 class="modal-title">Producto @item.Descrip</h5>
+                    @*Boton para cerrar el modal*@
+                    <button type="button" class="close" data-dismiss="modal" aria-label="close"></button>
+                    <span aria-hidden="true">&times;</span>
+                    @*La & es para caracteres especiales*@
+                </div>
+                <div class="modal-body">
+                    <div class="text-left mb-4">
+                        <p>Precio de compra: @item.PrecioCompra</p>
+                    </div>
+                    @*Se muestra la foto del producto*@
+                    <img src="@item.Foto" alt="Producto" class="d-block w-100" />
+
+                    <div class="text-left mb-4">
+                        <p>Porcentaje de impuestos: @item.PorImp</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+
+                </div>
+            </div> @*Cierre del modal content*@
+        </div>
+    </div>
+} @*Cierre del foreach*@

@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewData["Title"] = "Galery";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Galeria</h1>
+
+<div id="Carousel" class="carousel" data-ride="carousel">
+     
+    @*indicadores*@
+      <ul class="carousel-indicators">
+          <li data-target="#Carousel" data-slide-to="0" class="active"></li>
+          <li data-target="#Carousel" data-slide-to="1"></li>
+          <li data-target="#Carousel" data-slide-to="2"></li>
+      </ul>
+
+        @*contenido de slides*@
+       <div id="Contenido" class="carousel-inner">
+           @*foto 0*@
+           <div class="carousel-item active">
+               <img src="~/css/img/PerroMestisos.png" alt="Perros mestizos" class="img-fluid" />
+
+               <div class="carousel-caption">
+                   <h3>Perro Mestizo</h3>
+                   <p>Raza desarrollada en Europa</p>
+               </div>
+
+           </div>
+
+           @*foto 1*@
+           <div class="carousel-item">
+               <img src="~/css/img/Perros Corgis.jpg" alt="Perros Corgis" class="img-fluid" />
+               <div class="carousel-caption">
+                   <h3>Perro Corgis</h3>
+                   <p>Raza perros pequeño ingles</p>
+               </div>
+           </div>
+
+           @*foto 2*@
+           <div class="carousel-item">
+			   <img src="~/css/img/Perros Labrador Retrievers.jpg" alt="Perros Labrador" class="img-fluid" />
+               <div class="carousel-caption">
+                   <h3>Perro Labrador</h3>
+                   <p>Raza grande utilizado en ganaderia</p>
+               </div>
+           </div>
+       </div>
+
+
+        @*controles*@
+          <a class="carousel-control-prev" href="#Carousel" data-slide="prev">
+              <span class="carousel-control-prev-icon"></span>
+          </a>
+
+          <a class="carousel-control-next" href="#Carousel" data-slide="next" >
+              <span class="carousel-control-next-icon"></span>
+          </a>
+</div>
